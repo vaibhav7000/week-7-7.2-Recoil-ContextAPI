@@ -52,4 +52,9 @@ function GChild() {
 export default App
 
 
-// Component that does not uses values from the contextAPI will not get re-rendered. Only those component will re-render will re-render that uses any value from the component
+// If an value present inside the context changes all the components that uses any value from the context will re-render + their children will also re-render.
+// Suppose in context their is count1 and count2 as state_variable 1. component changes count 1 => all those component that uses the context will re-render -> the problem with contextAPI => "state_management libraries like zustand, recoil and redux solves theses problems " of component re-rendering
+
+// In contextAPI all the values (store) i.e value={{ many values }} gets updated when any value updates => all componenets that uses contextAPI will re-rendered
+
+// in state management tools when any value updates the whole store does not updated rather on that specific value changes that causes only those component to re-render that uses that particular value (benefit 1)
