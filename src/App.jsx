@@ -1,9 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { createContext } from 'react'
 import { useContext } from 'react'
+import Count from './Components/Count'
+import CustomButtons from './Components/CustomButtons'
+import { RecoilRoot } from 'recoil'
+
+
+export function AppMain() {
+
+  return (
+    <RecoilRoot>
+      <CountWrapper/>
+    </RecoilRoot>
+  )
+}
+
+
+function CountWrapper() {
+
+  return (
+    <div>
+      <Count/>
+      <CustomButtons/>
+    </div>
+  )
+}
+
+
+
+
+
+
+
 
 function App() {
   console.log("app")
@@ -58,3 +87,19 @@ export default App
 // In contextAPI all the values (store) i.e value={{ many values }} gets updated when any value updates => all componenets that uses contextAPI will re-rendered
 
 // in state management tools when any value updates the whole store does not updated rather on that specific value changes that causes only those component to re-render that uses that particular value (benefit 1)
+
+// Jotai as state-manegement tool
+// Jotai has concept of "atom" (atom represents a single state_variable like useState but globally ) that creates a single state_variable globally means that this state can be accessed by any componenet present inside the application and if any component changes value present inside the state all the component that uses the value will be "re-render"
+
+// atom is the smallest unit of state
+
+// Primitive atoms -> Atoms that has boolean, string, numbers, object, arrays as direct values does not depends on the other atom to get the value
+
+// Derived atoms -> atoms whose value is set according to the other atoms 
+
+// Getting the value from the atom inside the componenet using the hook 
+// 1. useAtom ( when the component uses both values and changes the value of the atom ) 2.useAtomValue ( if the component only uses the value ) 3. useSetAtom ( component that only updates the atom value inside the component )
+
+// There are two options to make derived atoms 
+// 1. one to make it read-only that means we cannot set the values directly else since they depend on other atom will be updated when the base atom will update ( read-only-derieved atom ) 
+// 2. making the derieved atom read-only + writing the value of the base atom ( getting the value + writing the base atom value )
