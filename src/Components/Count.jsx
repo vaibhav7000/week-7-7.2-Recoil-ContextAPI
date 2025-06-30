@@ -1,5 +1,5 @@
-import { atom, useAtomValue } from "jotai";
-import { countAtom, derievedCountDouble } from "../store/atoms/count";
+import { atom, useAtom, useAtomValue } from "jotai";
+import { countAtom, derievedCountDouble, derievedCountTriple } from "../store/atoms/count";
 
 function Count() {
     const count = useAtomValue(countAtom);
@@ -17,6 +17,25 @@ export function DoubleCount() {
     return (
         <div>
             Double count is {doubleCount}
+        </div>
+    )
+}
+
+export function ChangeCount() {
+    const [triple, setBaseCount] = useAtom(derievedCountTriple);
+
+    return (
+        <div style={{
+            marginTop: 20,
+        }}>
+            <div>
+                {triple}
+            </div>
+
+            <input type="text" onInput={(function(event) {
+                const value = parseInt(event.target.value);
+                setBaseCount(value);
+            })}/>
         </div>
     )
 }

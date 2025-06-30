@@ -12,7 +12,21 @@ const derievedCountDouble = atom((get) => {
     return value ? value * 2 : 1;
 })
 
-export { countAtom, derievedCountDouble }
+// Derieved atom -> read + write (base atom from which it is derieved ) this allows to update the source / base atom from which it is derieved directly from the derived ones.
+const derievedCountTriple = atom((get) => get(countAtom) ? get(countAtom) * 3 : 1 , (get, set, newValue) => {
+    if(!newValue) {
+        set(countAtom, 0);
+        return
+    }
+
+    set(countAtom, newValue); // newValue represent the value that we from the setCount method that we get from useAtom or useSetAtom
+})
+
+export { countAtom, derievedCountDouble, derievedCountTriple }
+
+// Creating derieved atoms helps to make clean components that only show the data present inside the atom
+
+// IMP -> In Jotai, any time you call get(someAtom) inside another atom, Jotai automatically tracks that as a dependency.
 
 // apis that are provided to get + set the value of atom
 // 1. useAtom provides both value + setter function

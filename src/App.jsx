@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { createContext } from 'react'
 import { useContext } from 'react'
-import Count, { DoubleCount } from './Components/Count'
+import Count, { DoubleCount, ChangeCount } from './Components/Count'
 import CustomButtons from './Components/CustomButtons'
 
 
@@ -21,6 +21,7 @@ function CountWrapper() {
       <Count/>
       <DoubleCount/>
       <CustomButtons/>
+      <ChangeCount/>
     </div>
   )
 }
