@@ -2,26 +2,24 @@ import { useState } from 'react'
 import './App.css'
 import { createContext } from 'react'
 import { useContext } from 'react'
-import Count from './Components/Count'
+import Count, { DoubleCount } from './Components/Count'
 import CustomButtons from './Components/CustomButtons'
-import { RecoilRoot } from 'recoil'
 
 
 export function AppMain() {
-
+  console.log("appmain")
   return (
-    <RecoilRoot>
       <CountWrapper/>
-    </RecoilRoot>
   )
 }
 
 
 function CountWrapper() {
-
+  console.log("count-wrapper");
   return (
     <div>
       <Count/>
+      <DoubleCount/>
       <CustomButtons/>
     </div>
   )

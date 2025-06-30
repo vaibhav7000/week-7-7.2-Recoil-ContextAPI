@@ -1,14 +1,25 @@
-import { useRecoilValue, useRecoilState } from "recoil"
-import { countAtom } from "../store/atoms/count.jsx";
+import { atom, useAtomValue } from "jotai";
+import { countAtom, derievedCountDouble } from "../store/atoms/count";
 
-export default function Count() {
-    // getting the value from the countAtom
-    const [count, setCount] = useRecoilState(countAtom);
-
+function Count() {
+    const count = useAtomValue(countAtom);
+    console.log("count rendered")
     return (
         <div className="count">
-            {"count"}
+            {count}
         </div>
     )
 }
+
+export function DoubleCount() {
+    const doubleCount = useAtomValue(derievedCountDouble);
+
+    return (
+        <div>
+            Double count is {doubleCount}
+        </div>
+    )
+}
+
+export default Count;
 
